@@ -15,6 +15,9 @@ RUN go mod download
 # Copy source code
 COPY . .
 
+# Generate go.sum and download dependencies
+RUN go mod tidy
+
 # Build the binary
 RUN CGO_ENABLED=0 GOOS=linux go build -o server-dashboard .
 
